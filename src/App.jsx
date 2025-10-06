@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 function App() {
-  const [state, setState] = useState('Emree');
+  const [count, setCount] = useState(0);
   //   let name = 'Emre';
 
-  function ismiDegistir(parametre) {
-    setState(parametre);
+  function handleCount(parametre) {
+    setCount(count + parametre);
     // name = 'Ahmet';
     // console.log(name);
   }
@@ -14,8 +14,13 @@ function App() {
 
   return (
     <div>
-      <h2>{state}</h2>
-      <button onClick={()=> ismiDegistir("hello")} className="">İsmi Değiştir</button>
+      <button onClick={() => handleCount(+1)} className="">
+        Arttır
+      </button>
+      <h2>{count}</h2>
+      <button onClick={() => handleCount(-1)} className="">
+        Azalt
+      </button>
     </div>
   );
 }
