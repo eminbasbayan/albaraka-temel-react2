@@ -3,19 +3,22 @@ import ProductCard from './ProductCard';
 import productsData, { customersData, usersData } from './productsData';
 
 function Products() {
-  const image = 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png';
-  const title = 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops';
-  const price = 50;
-
   return (
     <div className="products">
       <h2>Products Component</h2>
-      <ProductCard
-        image={image}
-        title={title}
-        price={price}
-        fullName="Emin Başbayan"
-      />
+
+      <div className="products-wrapper">
+        {productsData.map((product) => {
+          return (
+            <ProductCard
+              key={product.id}
+              image={product.image}
+              title={product.title}
+              price={product.price}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

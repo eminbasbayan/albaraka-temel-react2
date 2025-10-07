@@ -1,12 +1,9 @@
 import './ProductCard.css';
 
 function ProductCard(props) {
-  console.log('props: ', props);
-
   return (
     <div className="product-card">
       <img src={props.image} alt={props.title} className="product-image" />
-      {props.fullName}
       <div className="product-info">
         <strong className="product-title">{props.title}</strong>
 
