@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import './AddProductForm.css';
 
-const AddProductForm = () => {
+const AddProductForm = ({ addNewProduct }) => {
   const [product, setProduct] = useState({
     title: '',
     image: '',
@@ -15,10 +15,18 @@ const AddProductForm = () => {
     setProduct({ ...product, [name]: value });
   }
 
-  console.log(product);
+  function handleSubmit(event) {
+    event.preventDefault();
+    const newProduct = {
+      ...product,
+      id: Math.random(),
+      price: Number(product.price),
+    };
+    addNewProduct(newProduct);
+  }
 
   return (
-    <form className="add-product-form">
+    <form className="add-product-form" onSubmit={handleSubmit}>
       <label>
         Title: {product.title}
         <input

@@ -8,16 +8,20 @@ import productsData from '../../data/productsData';
 import './Products.css';
 
 function Products() {
-  const [titleState, setTitleState] = useState('Title');
+  const [products, setProducts] = useState(productsData);
+
+  function addNewProduct(newProduct) {
+    setProducts([newProduct, ...products]);
+  }
 
   return (
     <div className="products">
       <h2>Products Component</h2>
 
-      <AddProductForm />
+      <AddProductForm addNewProduct={addNewProduct} />
 
       <div className="products-wrapper">
-        {productsData.map((product) => {
+        {products.map((product) => {
           return (
             <ProductCard
               key={product.id}
@@ -26,8 +30,6 @@ function Products() {
               price={product.price}
               description={product.description}
               category={product.category}
-              titleState={titleState}
-              setTitleState={setTitleState}
             />
           );
         })}
