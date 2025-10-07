@@ -1,9 +1,11 @@
+import { useState } from 'react';
+
+import AddProductForm from './AddProductForm';
 import ProductCard from './ProductCard';
 
 import productsData from '../../data/productsData';
 
 import './Products.css';
-import { useState } from 'react';
 
 function Products() {
   const [titleState, setTitleState] = useState('Title');
@@ -11,6 +13,8 @@ function Products() {
   return (
     <div className="products">
       <h2>Products Component</h2>
+
+      <AddProductForm />
 
       <div className="products-wrapper">
         {productsData.map((product) => {
