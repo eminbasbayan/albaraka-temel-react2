@@ -1,6 +1,8 @@
 import ProductCard from './ProductCard';
 
-import productsData, { customersData, usersData } from './productsData';
+import productsData from './productsData';
+
+import "./Products.css";
 
 function Products() {
   return (
