@@ -17,6 +17,17 @@ const AddProductForm = ({ addNewProduct }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    const formValid = Object.values(product).every(
+      (value) => value.trim() !== ''
+    );
+
+    if (!formValid) {
+      return alert('Inputlar boş geçilemez!');
+    }
+
+    // console.log(Object.keys(product));
+
     const newProduct = {
       ...product,
       id: Math.random(),
