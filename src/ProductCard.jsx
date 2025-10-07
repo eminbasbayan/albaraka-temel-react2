@@ -1,25 +1,19 @@
-const productCardCSS = {
-  display: 'flex',
-  flexDirection: 'column',
-};
+import './ProductCard.css';
 
 function ProductCard() {
   return (
-    <div className="product-card" style={productCardCSS}>
+    <div className="product-card">
       <img
         src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png"
         alt="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
         className="product-image"
-        style={{
-          width: '200px',
-          height: '200px',
-          backgroundColor: 'red',
-        }}
       />
 
-      <strong className="product-title">Title</strong>
+      <div className="product-info">
+        <strong className="product-title">Title</strong>
 
-      <span className="product-price">₺50</span>
+        <span className="product-price">₺50</span>
+      </div>
     </div>
   );
 }
@@ -27,3 +21,6 @@ function ProductCard() {
 export default ProductCard;
 
 // https://fakestoreapi.com/products
+
+
+// https://github.com/eminbasbayan/albaraka-temel-react2
