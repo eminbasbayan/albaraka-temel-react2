@@ -1,15 +1,11 @@
 import './Button.css';
 
-const Button = (props) => {
-    console.log(props);
-    
-  const classNames = `btn btn-${props.color} ${props.link && 'btn-link'} btn-${
-    props.size
-  }`;
+const Button = ({ color, link, size, disabled, onClick, children }) => {
+  const classNames = `btn btn-${color} ${link && 'btn-link'} btn-${size}`;
 
   return (
-    <button className={classNames} disabled={props.disabled}>
-      {props.children}
+    <button className={classNames} disabled={disabled} onClick={onClick}>
+      {children}
     </button>
   );
 };

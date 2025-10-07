@@ -1,18 +1,27 @@
+import Button from '../ui/Button';
 import './ProductCard.css';
 
 function ProductCard(props) {
+  const {
+    title,
+    image,
+    category,
+    titleState,
+    description,
+    price,
+    setTitleState,
+  } = props;
   return (
     <div className="product-card">
-      <img src={props.image} alt={props.title} className="product-image" />
+      <img src={image} alt={title} className="product-image" />
       <div className="product-info">
-        <span className="product-category">{props.category}</span>
-        <strong className="product-title">{props.titleState}</strong>
-        <p className="product-description">{props.description}</p>
-        <span className="product-price">₺{props.price}</span>
-
-        <button onClick={() => props.setTitleState('Yeni İsim!')}>
+        <span className="product-category">{category}</span>
+        <strong className="product-title">{titleState}</strong>
+        <p className="product-description">{description}</p>
+        <span className="product-price">₺{price}</span>
+        <Button color="success" onClick={() => setTitleState('Yeni İsim!')}>
           Ürün İsmini Değiştir!
-        </button>
+        </Button>
       </div>
     </div>
   );
