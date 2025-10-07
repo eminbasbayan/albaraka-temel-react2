@@ -1,5 +1,7 @@
 import ProductCard from './ProductCard';
 
+import productsData, { customersData, usersData } from './productsData';
+
 function Products() {
   const image = 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png';
   const title = 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops';
