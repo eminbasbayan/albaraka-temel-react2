@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 const Modal = ({
   title = 'Modal title',
@@ -25,7 +26,7 @@ const Modal = ({
     };
   }, []);
 
-  return (
+  return createPortal(
     <div className="modal fade show d-block">
       <div className="modal-dialog z-3">
         <div className="modal-content">
@@ -62,7 +63,8 @@ const Modal = ({
         }}
         onClick={handleClose}
       ></div>
-    </div>
+    </div>,
+    document.getElementById('portal')
   );
 };
 

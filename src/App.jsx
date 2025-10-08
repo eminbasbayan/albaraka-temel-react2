@@ -6,8 +6,8 @@ function App() {
   return (
     <div className="container position-relative ">
       <Header />
-      {/* <Products /> */}
-      <Login />
+      <Products />
+      {/* <Login /> */}
     </div>
   );
 }
