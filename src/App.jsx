@@ -1,8 +1,10 @@
+import Header from './components/layout/Header';
 import Products from './components/products/Products';
 
 function App() {
   return (
-    <div className='container pt-4'>
+    <div className='container position-relative '>
+      <Header />
       <Products />
     </div>
   );

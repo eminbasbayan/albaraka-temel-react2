@@ -40,7 +40,7 @@ function Products() {
   }
 
   return (
-    <div className="products">
+    <div className="products mt-4">
       <h2>Products Component</h2>
 
       <AddProductForm
