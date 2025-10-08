@@ -3,13 +3,12 @@ import { useState } from 'react';
 import AddProductForm from './AddProductForm';
 import ProductCard from './ProductCard';
 
-import productsData from '../../data/productsData';
-
-import './Products.css';
 import Modal from '../ui/Modal';
+import './Products.css';
+import Button from '../ui/Button';
 
 function Products() {
-  const [products, setProducts] = useState(productsData);
+  const [products, setProducts] = useState([]);
   const [isShowModal, setIsShowModal] = useState(false);
 
   function addNewProduct(newProduct) {
@@ -26,6 +25,12 @@ function Products() {
     }
   }
 
+  function fetchProducts() {
+    fetch('https://fakestoreapi.com/products')
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }
+
   return (
     <div className="products">
       <h2>Products Component</h2>
@@ -34,6 +39,10 @@ function Products() {
         addNewProduct={addNewProduct}
         setIsShowModal={setIsShowModal}
       />
+
+      <Button color={'primary'} onClick={fetchProducts} addClass="mb-4">
+        Ürünleri Getir
+      </Button>
 
       <div className="products-wrapper">
         {products.map((product) => {
