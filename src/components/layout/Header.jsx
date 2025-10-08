@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import CartContext from '../../context/CartContext';
 
-const Header = ({ cartItems }) => {
+const Header = () => {
+  const { cartItems } = useContext(CartContext);
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary position-sticky top-0 left-0 w-100">
       <div className="container-fluid">

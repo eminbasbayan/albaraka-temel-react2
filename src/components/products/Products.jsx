@@ -8,7 +8,7 @@ import './Products.css';
 import Button from '../ui/Button';
 import Loading from '../ui/Loading';
 
-function Products({ onAddToCart }) {
+function Products() {
   const [products, setProducts] = useState([]);
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowLoading, setIsShowLoading] = useState(false);
@@ -66,7 +66,6 @@ function Products({ onAddToCart }) {
               description={product.description}
               category={product.category}
               onDeleteProduct={deleteProduct}
-              onAddToCart={onAddToCart}
             />
           );
         })}
