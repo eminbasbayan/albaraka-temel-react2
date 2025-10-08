@@ -1,4 +1,21 @@
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const loginSchema = yup.object().shape({
+  email: yup
+    .string()
+    .required('Email boş bırakılamaz!')
+    .email('Geçerli bir e-posta adresi giriniz.'),
+
+  password: yup
+    .string()
+    .required('Şifre alanı zorunludur.')
+    .min(6, 'Şifre en az 6 karakter olmalıdır.')
+    .max(30, 'Şifre 30 karakterden uzun olamaz.'),
+
+  rememberMeCheck: yup.boolean(),
+});
 
 const Login = () => {
   const {
@@ -6,15 +23,17 @@ const Login = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
 
-//   console.log(watch("rememberMeCheck"));
-//   console.log(watch("email"));
+  //   console.log(watch("rememberMeCheck"));
+  //   console.log(watch("email"));
 
   function onSubmit(data) {
     console.log(data);
-}
-console.log(errors);
+  }
+  console.log(errors);
 
   return (
     <div className="justify-content-center w-100 mt-4">
@@ -39,9 +58,13 @@ console.log(errors);
                 className="form-control form-control-lg"
                 id="emailInput"
                 placeholder="E-posta adresiniz"
-                {...register("email", {required: true})}
+                {...register('email')}
               />
-              {errors.email && <span className='text-danger'>Bu input boş geçilemez!</span> }
+              {errors.email && (
+                <span className="text-danger mt-1 d-inline-flex">
+                  {errors.email.message}
+                </span>
+              )}
             </div>
 
             <div className="mb-4">
@@ -56,8 +79,13 @@ console.log(errors);
                 className="form-control form-control-lg"
                 id="passwordInput"
                 placeholder="Şifreniz"
-                {...register("password")}
+                {...register('password')}
               />
+               {errors.password && (
+                <span className="text-danger mt-1 d-inline-flex">
+                  {errors.password.message}
+                </span>
+              )}
             </div>
 
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -67,7 +95,7 @@ console.log(errors);
                   type="checkbox"
                   value=""
                   id="rememberMeCheck"
-                  {...register("rememberMeCheck")}
+                  {...register('rememberMeCheck')}
                 />
                 <label
                   className="form-check-label text-muted"
