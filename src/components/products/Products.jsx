@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 
 import AddProductForm from './AddProductForm';
 import ProductCard from './ProductCard';
@@ -25,6 +25,10 @@ function Products() {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <div className="products mt-4">
