@@ -1,8 +1,14 @@
+import { useContext } from 'react';
 import Button from '../ui/Button';
+import CartContext from '../../context/CartContext';
+
 import './ProductCard.css';
 
 function ProductCard(props) {
   const { onDeleteProduct, onAddToCart, ...product } = props;
+   const data = useContext(CartContext);
+
+   console.log(data);
   return (
     <div className="product-card">
       <img src={product.image} alt={product.title} className="product-image" />
