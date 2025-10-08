@@ -6,7 +6,7 @@ const Modal = ({
   setIsShowModal,
 }) => {
   function handleClose() {
-    setIsShowModal(false);
+    setIsShowModal();
   }
 
   return (

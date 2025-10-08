@@ -23,7 +23,7 @@ const AddProductForm = ({ addNewProduct, setIsShowModal }) => {
     );
 
     if (!formValid) {
-      return setIsShowModal(true);
+      return setIsShowModal();
     }
 
     const newProduct = {

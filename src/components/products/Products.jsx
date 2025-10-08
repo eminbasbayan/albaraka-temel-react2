@@ -1,42 +1,29 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 
 import AddProductForm from './AddProductForm';
 import ProductCard from './ProductCard';
 
-import Modal from '../ui/Modal';
-import './Products.css';
 import Button from '../ui/Button';
+import Modal from '../ui/Modal';
 import Loading from '../ui/Loading';
 
+import { initialState, reducerFunction } from './productReducer';
+
+import './Products.css';
+
 function Products() {
-  const [products, setProducts] = useState([]);
-  const [isShowModal, setIsShowModal] = useState(false);
-  const [isShowLoading, setIsShowLoading] = useState(false);
+  const [state, dispatch] = useReducer(reducerFunction, initialState);
 
-  function addNewProduct(newProduct) {
-    setProducts([newProduct, ...products]);
-  }
+  async function fetchProducts() {
+    dispatch({ type: 'SHOW_LOADING' });
 
-  function deleteProduct(productId) {
-    if (confirm('Ürünü silmek istediğinize emin misiniz?')) {
-      const filteredProducts = products.filter(
-        (product) => product.id !== productId
-      );
-
-      setProducts(filteredProducts);
+    try {
+      const res = await fetch('https://fakestoreapi.com/products');
+      const data = await res.json();
+      dispatch({ type: 'FETCH_PRODUCTS', data });
+    } catch (error) {
+      console.log(error);
     }
-  }
-
-  function fetchProducts() {
-    if (products.length > 0) return alert('Ürünler zaten yüklendi!');
-    setProducts([]);
-    setIsShowLoading(true);
-
-    fetch('https://fakestoreapi.com/products')
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.log(err))
-      .finally(() => setIsShowLoading(false));
   }
 
   return (
@@ -44,8 +31,10 @@ function Products() {
       <h2>Products Component</h2>
 
       <AddProductForm
-        addNewProduct={addNewProduct}
-        setIsShowModal={setIsShowModal}
+        addNewProduct={(newProduct) =>
+          dispatch({ type: 'ADD_PRODUCT', newProduct })
+        }
+        setIsShowModal={() => dispatch({ type: 'SHOW_MODAL' })}
       />
 
       <Button color={'primary'} onClick={fetchProducts} addClass="mb-4">
@@ -53,29 +42,26 @@ function Products() {
       </Button>
 
       <div className="products-wrapper">
-        {isShowLoading && <Loading />}
-        {!products.length && !isShowLoading && <p>Hiç ürün yok!</p>}
-        {products.map((product) => {
+        {state.isShowLoading && <Loading />}
+        {!state.products.length && !state.isShowLoading && <p>Hiç ürün yok!</p>}
+        {state.products.map((product) => {
           return (
             <ProductCard
               key={product.id}
-              id={product.id}
-              image={product.image}
-              title={product.title}
-              price={product.price}
-              description={product.description}
-              category={product.category}
-              onDeleteProduct={deleteProduct}
+              {...product}
+              onDeleteProduct={(productId) =>
+                dispatch({ type: 'DELETE_PRODUCT', productId })
+              }
             />
           );
         })}
       </div>
 
-      {isShowModal && (
+      {state.isShowModal && (
         <Modal
           title="Form Validation Hatası"
           description="Inputlar boş olamaz!"
-          setIsShowModal={setIsShowModal}
+          setIsShowModal={() => dispatch({ type: 'CLOSE_MODAL' })}
         />
       )}
     </div>

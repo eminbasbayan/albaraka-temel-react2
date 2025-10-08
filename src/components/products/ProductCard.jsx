@@ -5,10 +5,9 @@ import CartContext from '../../context/CartContext';
 import './ProductCard.css';
 
 function ProductCard(props) {
-  const { onAddToCart, ...product } = props;
+  const { onDeleteProduct, ...product } = props;
   const data = useContext(CartContext);
 
-  console.log(data);
   return (
     <div className="product-card">
       <img src={product.image} alt={product.title} className="product-image" />
