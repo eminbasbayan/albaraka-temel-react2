@@ -14,6 +14,16 @@ function Products() {
     setProducts([newProduct, ...products]);
   }
 
+  function deleteProduct(productId) {
+    if (confirm('Ürünü silmek istediğinize emin misiniz?')) {
+      const filteredProducts = products.filter(
+        (product) => product.id !== productId
+      );
+
+      setProducts(filteredProducts);
+    }
+  }
+
   return (
     <div className="products">
       <h2>Products Component</h2>
@@ -25,11 +35,13 @@ function Products() {
           return (
             <ProductCard
               key={product.id}
+              id={product.id}
               image={product.image}
               title={product.title}
               price={product.price}
               description={product.description}
               category={product.category}
+              onDeleteProduct={deleteProduct}
             />
           );
         })}

@@ -2,7 +2,7 @@ import Button from '../ui/Button';
 import './ProductCard.css';
 
 function ProductCard(props) {
-  const { title, image, category, description, price } = props;
+  const { id, title, image, category, description, price, onDeleteProduct } = props;
   return (
     <div className="product-card">
       <img src={image} alt={title} className="product-image" />
@@ -11,7 +11,7 @@ function ProductCard(props) {
         <strong className="product-title">{title}</strong>
         <p className="product-description">{description}</p>
         <span className="product-price">₺{price}</span>
-        <Button color="success">Sepete Ekle</Button>
+        <Button color="danger" onClick={()=> onDeleteProduct(id)}>Ürünü Sil</Button>
       </div>
     </div>
   );
