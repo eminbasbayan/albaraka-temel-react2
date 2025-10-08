@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => {
+const Header = ({ cartItems }) => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary position-sticky top-0 left-0 w-100">
       <div className="container-fluid">
@@ -34,9 +34,8 @@ const Header = () => {
             </li>
           </ul>
           <div className="d-flex">
-        
             <button className="btn btn-success" type="submit">
-              Sepet {0}
+              Sepet {cartItems.length}
             </button>
           </div>
         </div>

@@ -8,7 +8,7 @@ import './Products.css';
 import Button from '../ui/Button';
 import Loading from '../ui/Loading';
 
-function Products() {
+function Products({ onAddToCart }) {
   const [products, setProducts] = useState([]);
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowLoading, setIsShowLoading] = useState(false);
@@ -28,7 +28,7 @@ function Products() {
   }
 
   function fetchProducts() {
-    if (products.length > 0) return alert("Ürünler zaten yüklendi!");
+    if (products.length > 0) return alert('Ürünler zaten yüklendi!');
     setProducts([]);
     setIsShowLoading(true);
 
@@ -66,6 +66,7 @@ function Products() {
               description={product.description}
               category={product.category}
               onDeleteProduct={deleteProduct}
+              onAddToCart={onAddToCart}
             />
           );
         })}
