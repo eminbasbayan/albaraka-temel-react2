@@ -6,10 +6,12 @@ import ProductCard from './ProductCard';
 import Modal from '../ui/Modal';
 import './Products.css';
 import Button from '../ui/Button';
+import Loading from '../ui/Loading';
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowLoading, setIsShowLoading] = useState(false);
 
   function addNewProduct(newProduct) {
     setProducts([newProduct, ...products]);
@@ -26,9 +28,15 @@ function Products() {
   }
 
   function fetchProducts() {
+    if (products.length > 0) return alert("Ürünler zaten yüklendi!");
+    setProducts([]);
+    setIsShowLoading(true);
+
     fetch('https://fakestoreapi.com/products')
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProducts(data))
+      .catch((err) => console.log(err))
+      .finally(() => setIsShowLoading(false));
   }
 
   return (
@@ -45,6 +53,8 @@ function Products() {
       </Button>
 
       <div className="products-wrapper">
+        {isShowLoading && <Loading />}
+        {!products.length && !isShowLoading && <p>Hiç ürün yok!</p>}
         {products.map((product) => {
           return (
             <ProductCard
