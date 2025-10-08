@@ -14,13 +14,13 @@ function Counter() {
   //   console.log("component her render'da çalışır!");
   // });
 
-  useEffect(() => {
-    console.log("component ilk render'da çalışır!");
-  }, []);
+  // useEffect(() => {
+  //   console.log("component ilk render'da çalışır!");
+  // }, []);
 
-  useEffect(() => {
-    console.log("component ilk ve dependecy array'e göre tekrar çalışır!");
-  }, [fullName, count]);
+  // useEffect(() => {
+  //   console.log("component ilk ve dependecy array'e göre tekrar çalışır!");
+  // }, [fullName, count]);
 
 
   useEffect(()=>{

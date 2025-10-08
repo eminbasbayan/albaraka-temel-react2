@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Modal = ({
   title = 'Modal title',
   description = '...',
   setIsShowModal,
 }) => {
+  const [count, setCount] = useState(0);
   function handleClose() {
     setIsShowModal();
   }
+
+  useEffect(() => {
+    let i = 0;
+
+    const id = setInterval(() => {
+      i = i + 1;
+      setCount(i);
+      console.log(i);
+    }, 1000);
+
+    // clean-up function
+    return () => {
+      clearInterval(id);
+    };
+  }, []);
 
   return (
     <div className="modal fade show d-block">
       <div className="modal-dialog z-3">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5">{title}</h1>
+            <h1 className="modal-title fs-5">
+              {title} {count}
+            </h1>
             <button
               type="button"
               className="btn-close"

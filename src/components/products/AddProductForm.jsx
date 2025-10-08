@@ -75,6 +75,7 @@ const AddProductForm = ({ addNewProduct, setIsShowModal }) => {
     <form className="add-product-form" onSubmit={handleSubmit}>
       {productInputs.map((input) => (
         <ProductInput
+          key={input.name}
           {...input}
           handleChange={handleChange}
           value={product[input.name]}
