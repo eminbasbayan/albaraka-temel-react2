@@ -2,7 +2,7 @@ import Products from './components/products/Products';
 
 function App() {
   return (
-    <div className='container'>
+    <div className='container pt-4'>
       <Products />
     </div>
   );

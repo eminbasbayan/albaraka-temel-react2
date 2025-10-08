@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from '../ui/Button';
 import './AddProductForm.css';
 
-const AddProductForm = ({ addNewProduct }) => {
+const AddProductForm = ({ addNewProduct, setIsShowModal }) => {
   const [product, setProduct] = useState({
     title: '',
     image: '',
@@ -23,10 +23,8 @@ const AddProductForm = ({ addNewProduct }) => {
     );
 
     if (!formValid) {
-      return alert('Inputlar boş geçilemez!');
+      return setIsShowModal(true);
     }
-
-    // console.log(Object.keys(product));
 
     const newProduct = {
       ...product,
