@@ -1,6 +1,21 @@
-import React from 'react';
+import { useForm } from 'react-hook-form';
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+//   console.log(watch("rememberMeCheck"));
+//   console.log(watch("email"));
+
+  function onSubmit(data) {
+    console.log(data);
+}
+console.log(errors);
+
   return (
     <div className="justify-content-center w-100 mt-4">
       <div className="card shadow-lg border-0">
@@ -11,7 +26,7 @@ const Login = () => {
           </h4>
         </div>
         <div className="card-body p-4">
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
               <label
                 htmlFor="emailInput"
@@ -24,7 +39,9 @@ const Login = () => {
                 className="form-control form-control-lg"
                 id="emailInput"
                 placeholder="E-posta adresiniz"
+                {...register("email", {required: true})}
               />
+              {errors.email && <span className='text-danger'>Bu input boş geçilemez!</span> }
             </div>
 
             <div className="mb-4">
@@ -39,6 +56,7 @@ const Login = () => {
                 className="form-control form-control-lg"
                 id="passwordInput"
                 placeholder="Şifreniz"
+                {...register("password")}
               />
             </div>
 
@@ -49,6 +67,7 @@ const Login = () => {
                   type="checkbox"
                   value=""
                   id="rememberMeCheck"
+                  {...register("rememberMeCheck")}
                 />
                 <label
                   className="form-check-label text-muted"
@@ -63,7 +82,7 @@ const Login = () => {
             </div>
 
             <div className="d-grid">
-              <button type="button" className="btn btn-primary btn-lg fw-bold">
+              <button className="btn btn-primary btn-lg fw-bold">
                 GİRİŞ YAP
               </button>
             </div>
