@@ -3,6 +3,7 @@ import LoginPage from '../pages/auth/LoginPage';
 import HomePage from '../pages/HomePage';
 import ProductsPage from '../pages/ProductsPage';
 import CartPage from '../pages/CartPage';
+import ProductDetailPage from '../pages/ProductDetailPage';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/cart',
     Component: CartPage,
+  },
+   {
+    path: '/product-details',
+    Component: ProductDetailPage,
   },
 ]);
 
