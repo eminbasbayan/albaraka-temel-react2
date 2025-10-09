@@ -8,22 +8,49 @@ function ProductCard(props) {
 
   return (
     <div className="card h-100">
-      <img src={product.image} alt={product.title} className="card-img-top" style={{ height: '200px', objectFit: 'cover' }} />
+      <img
+        src={product.image}
+        alt={product.title}
+        className="card-img-top"
+        style={{ height: '200px', objectFit: 'cover' }}
+      />
       <div className="card-body d-flex flex-column gap-2">
-        <span className="badge bg-secondary text-start">{product.category}</span>
-        <strong className="card-title text-truncate">{product.title}</strong>
-        <p className="card-text" style={{
-          overflow: 'hidden',
-          display: '-webkit-box',
-          WebkitLineClamp: '2',
-          WebkitBoxOrient: 'vertical'
-        }}>{product.description}</p>
-        <span className="fw-bold">
-          ₺{product.price}{' '}
-          <span onClick={() => data.arttir(product.id)} className="text-primary" role="button">+</span>{' '}
-          {cart && `x ${product.quantity}`}{' '}
-          <span onClick={() => data.azalt(product)} className="text-danger" role="button">-</span>
+        <span className="badge bg-secondary text-start">
+          {product.category}
         </span>
+        <strong className="card-title text-truncate">{product.title}</strong>
+        <p
+          className="card-text"
+          style={{
+            overflow: 'hidden',
+            display: '-webkit-box',
+            WebkitLineClamp: '2',
+            WebkitBoxOrient: 'vertical',
+          }}
+        >
+          {product.description}
+        </p>
+        <span className="fw-bold">₺{product.price} </span>
+        {cart && (
+          <div className='my-2'>
+            <span
+              onClick={() => data.arttir(product.id)}
+              className="text-primary p-2 border"
+              role="button"
+            >
+              +
+            </span>
+            <span className='mx-2'>{product.quantity}</span>
+
+            <span
+              onClick={() => data.azalt(product)}
+              className="text-danger p-2 border"
+              role="button"
+            >
+              -
+            </span>
+          </div>
+        )}
         {!cart && (
           <Button color="success" onClick={() => data.onAddToCart(product)}>
             Sepete Ekle
