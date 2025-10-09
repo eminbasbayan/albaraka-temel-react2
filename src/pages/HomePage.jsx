@@ -164,34 +164,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Promo Banner */}
-      <section className="container mb-5">
-        <div className="card bg-gradient text-white border-0 shadow-lg" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
-          <div className="card-body p-5">
-            <div className="row align-items-center">
-              <div className="col-lg-8">
-                <h2 className="display-5 fw-bold mb-3">
-                  Yaz Kampanyası Başladı!
-                </h2>
-                <p className="lead mb-4">
-                  Tüm ürünlerde %50'ye varan indirimler. Kaçırmayın!
-                </p>
-                <button
-                  className="btn btn-light btn-lg px-4"
-                  onClick={() => navigate('/products')}
-                >
-                  Fırsatları Gör
-                </button>
-              </div>
-              <div className="col-lg-4 text-center">
-                <div className="display-1 fw-bold">%50</div>
-                <div className="fs-4">İNDİRİM</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Stats Section */}
       <section className="bg-light py-5 mb-5">
         <div className="container">
