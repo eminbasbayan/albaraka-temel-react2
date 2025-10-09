@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../components/layout/Header';
 
 function ProductDetailPage() {
   const [product, setProduct] = useState(null);
@@ -17,7 +16,6 @@ function ProductDetailPage() {
 
   return (
     <div className="container mt-5">
-      <Header />
       <div className="row">
         {/* Sol Taraf - Ürün Görseli */}
         <div className="col-md-6 mb-4">

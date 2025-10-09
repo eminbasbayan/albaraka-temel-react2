@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import Header from '../components/layout/Header';
+import  { useContext } from 'react';
 import CartContext from '../context/CartContext';
 import ProductCard from '../components/products/ProductCard';
 
@@ -34,7 +33,6 @@ const CartPage = () => {
 
   return (
     <div className="cart-page">
-      <Header />
       <h1>Cart Page</h1>
 
       <Cart />
