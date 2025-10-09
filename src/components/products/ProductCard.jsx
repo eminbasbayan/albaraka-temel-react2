@@ -2,24 +2,27 @@ import { useContext } from 'react';
 import Button from '../ui/Button';
 import CartContext from '../../context/CartContext';
 
-import './ProductCard.css';
-
 function ProductCard(props) {
   const { onDeleteProduct, cart, ...product } = props;
   const data = useContext(CartContext);
 
   return (
-    <div className="product-card">
-      <img src={product.image} alt={product.title} className="product-image" />
-      <div className="product-info">
-        <span className="product-category">{product.category}</span>
-        <strong className="product-title">{product.title}</strong>
-        <p className="product-description">{product.description}</p>
-        <span className="product-price">
+    <div className="card h-100">
+      <img src={product.image} alt={product.title} className="card-img-top" style={{ height: '200px', objectFit: 'cover' }} />
+      <div className="card-body d-flex flex-column gap-2">
+        <span className="badge bg-secondary text-start">{product.category}</span>
+        <strong className="card-title text-truncate">{product.title}</strong>
+        <p className="card-text" style={{
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitLineClamp: '2',
+          WebkitBoxOrient: 'vertical'
+        }}>{product.description}</p>
+        <span className="fw-bold">
           ₺{product.price}{' '}
-          <span onClick={() => data.arttir(product.id)}>+</span>{' '}
+          <span onClick={() => data.arttir(product.id)} className="text-primary" role="button">+</span>{' '}
           {cart && `x ${product.quantity}`}{' '}
-          <span onClick={() => data.azalt(product)}>-</span>
+          <span onClick={() => data.azalt(product)} className="text-danger" role="button">-</span>
         </span>
         {!cart && (
           <Button color="success" onClick={() => data.onAddToCart(product)}>
