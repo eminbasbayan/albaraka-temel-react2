@@ -6,7 +6,7 @@ import router from './routes/routes';
 
 function App() {
   return (
-    <div className="container position-relative">
+    <div className="position-relative">
       <RouterProvider router={router} />
       <ToastContainer />
     </div>

@@ -8,6 +8,12 @@ import MainLayout from '../layouts/MainLayout';
 import NotFound from '../components/NotFound';
 import AboutPage from '../pages/AboutPage';
 import ContactPage from '../pages/ContactPage';
+import AdminLayout from '../layouts/AdminLayout';
+import AdminDashboard from '../pages/admin/AdminDashboard';
+import AdminProducts from '../pages/admin/AdminProducts';
+import AdminOrders from '../pages/admin/AdminOrders';
+import AdminCustomers from '../pages/admin/AdminCustomers';
+import AdminSettings from '../pages/admin/AdminSettings';
 
 const router = createBrowserRouter([
   {
@@ -22,11 +28,11 @@ const router = createBrowserRouter([
         path: '/products',
         Component: ProductsPage,
       },
-        {
+      {
         path: '/about',
         Component: AboutPage,
       },
-           {
+      {
         path: '/contact',
         Component: ContactPage,
       },
@@ -41,6 +47,32 @@ const router = createBrowserRouter([
       {
         path: '/product-details/:productId',
         Component: ProductDetailPage,
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    Component: AdminLayout,
+    children: [
+      {
+        path: 'dashboard',
+        Component: AdminDashboard,
+      },
+      {
+        path: 'products',
+        Component: AdminProducts,
+      },
+      {
+        path: 'orders',
+        Component: AdminOrders,
+      },
+      {
+        path: 'customers',
+        Component: AdminCustomers,
+      },
+      {
+        path: 'settings',
+        Component: AdminSettings,
       },
     ],
   },
