@@ -15,7 +15,12 @@ function ProductCard(props) {
         <span className="product-category">{product.category}</span>
         <strong className="product-title">{product.title}</strong>
         <p className="product-description">{product.description}</p>
-        <span className="product-price">₺{product.price}</span>
+        <span className="product-price">
+          ₺{product.price}{' '}
+          <span onClick={() => data.arttir(product.id)}>+</span>{' '}
+          {cart && `x ${product.quantity}`}{' '}
+          <span onClick={() => data.azalt(product)}>-</span>
+        </span>
         {!cart && (
           <Button color="success" onClick={() => data.onAddToCart(product)}>
             Sepete Ekle
