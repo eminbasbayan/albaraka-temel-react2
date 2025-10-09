@@ -6,7 +6,7 @@ import router from './routes/routes';
 function App() {
   return (
     <div className="container position-relative ">
-      <Header />
+      
       <RouterProvider router={router} />
     </div>
   );
