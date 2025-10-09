@@ -1,10 +1,12 @@
 import { useContext } from 'react';
 import Button from '../ui/Button';
 import CartContext from '../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 function ProductCard(props) {
   const { onDeleteProduct, cart, ...product } = props;
   const data = useContext(CartContext);
+  const navigate = useNavigate();
 
   return (
     <div className="card h-100">
@@ -12,13 +14,22 @@ function ProductCard(props) {
         src={product.image}
         alt={product.title}
         className="card-img-top"
-        style={{ height: '200px', objectFit: 'cover' }}
+        style={{ height: '200px', objectFit: 'cover', cursor: 'pointer' }}
+        onClick={() => navigate(`/product-details/${product.id}`)}
       />
       <div className="card-body d-flex flex-column gap-2">
         <span className="badge bg-secondary text-start">
           {product.category}
         </span>
-        <strong className="card-title text-truncate">{product.title}</strong>
+        <strong
+          className="card-title text-truncate"
+          onClick={() => navigate(`/product-details/${product.id}`)}
+          style={{
+            cursor: 'pointer',
+          }}
+        >
+          {product.title}
+        </strong>
         <p
           className="card-text"
           style={{
@@ -32,7 +43,7 @@ function ProductCard(props) {
         </p>
         <span className="fw-bold">₺{product.price} </span>
         {cart && (
-          <div className='my-2'>
+          <div className="my-2">
             <span
               onClick={() => data.arttir(product.id)}
               className="text-primary p-2 border"
@@ -40,7 +51,7 @@ function ProductCard(props) {
             >
               +
             </span>
-            <span className='mx-2'>{product.quantity}</span>
+            <span className="mx-2">{product.quantity}</span>
 
             <span
               onClick={() => data.azalt(product)}

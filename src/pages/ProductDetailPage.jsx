@@ -1,18 +1,23 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Header from '../components/layout/Header';
 
 function ProductDetailPage() {
   const [product, setProduct] = useState(null);
 
+  const { productId } = useParams();
+
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/5`)
+    fetch(`https://fakestoreapi.com/products/${productId}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
-  }, []);
+  }, [productId]);
 
-  if(!product) return <h2>Loading...</h2> 
+  if (!product) return <h2>Loading...</h2>;
 
   return (
     <div className="container mt-5">
+      <Header />
       <div className="row">
         {/* Sol Taraf - Ürün Görseli */}
         <div className="col-md-6 mb-4">
@@ -64,9 +69,7 @@ function ProductDetailPage() {
             <div className="card bg-light border-0">
               <div className="card-body">
                 <h5 className="card-title">Ürün Açıklaması</h5>
-                <p className="card-text text-muted">
-                  {product.description}
-                </p>
+                <p className="card-text text-muted">{product.description}</p>
               </div>
             </div>
 
