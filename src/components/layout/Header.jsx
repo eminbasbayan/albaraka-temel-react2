@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary position-sticky top-0 left-0 w-100">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           Navbar
         </a>
         <button className="navbar-toggler" type="button">
@@ -20,7 +20,7 @@ const Header = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/products">
                 Products
               </a>
             </li>
